@@ -1,12 +1,28 @@
-<script>
-const imageSources = [''
-]
+var randomNumber=Math.floor(Math.random()*100)+1;
+var attempt=0;
 
-function changeBackgroundImage() {
-    const randomIndex = Math.floor(Math.random() * imageSources.length);
-    document.body.style.backgroundImage = `url(${imageSources[randomIndex]})`;
+document.getElementById('btn').addEventListener('click',function(){
+
+var guess=parseInt(document.getElementById('guessInput').value);
+attempt++;
+
+if(guess===randomNumber){
+    displayMessage("Congratulations! You gueesed the Number in "+attempt+" attempts");
+    document.getElementById('btn').disabled=true;
+}
+else if (guess<randomNumber){
+    displayMessage("Too low! Please try a higher number.")
+}
+else{
+    displayMessage("Too High! Please try a lower number.")
 }
 
-// Change the background image every 5 seconds (5000 milliseconds)
-setInterval(changeBackgroundImage, 5000);
-</script>
+
+
+
+
+});
+
+function displayMessage(msg){
+    document.getElementById('msg').textContent=msg;
+}
